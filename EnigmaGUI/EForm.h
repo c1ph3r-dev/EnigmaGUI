@@ -186,6 +186,7 @@ namespace EnigmaGUI {
 			// 
 			// labelRot1
 			// 
+			this->labelRot1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot1->AutoSize = true;
 			this->labelRot1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
 			this->labelRot1->Location = System::Drawing::Point(1112, 262);
@@ -196,6 +197,7 @@ namespace EnigmaGUI {
 			// 
 			// labelRot2
 			// 
+			this->labelRot2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot2->AutoSize = true;
 			this->labelRot2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
 			this->labelRot2->Location = System::Drawing::Point(1137, 262);
@@ -206,6 +208,7 @@ namespace EnigmaGUI {
 			// 
 			// labelRot3
 			// 
+			this->labelRot3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot3->AutoSize = true;
 			this->labelRot3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
 			this->labelRot3->Location = System::Drawing::Point(1162, 262);
@@ -216,6 +219,8 @@ namespace EnigmaGUI {
 			// 
 			// inputText
 			// 
+			this->inputText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->inputText->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->inputText->Location = System::Drawing::Point(13, 13);
@@ -225,6 +230,8 @@ namespace EnigmaGUI {
 			// 
 			// button1
 			// 
+			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->button1->Location = System::Drawing::Point(432, 48);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(203, 23);
@@ -235,6 +242,8 @@ namespace EnigmaGUI {
 			// 
 			// outText
 			// 
+			this->outText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
 			this->outText->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->outText->Location = System::Drawing::Point(12, 77);
