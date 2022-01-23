@@ -279,13 +279,28 @@ namespace EnigmaGUI {
 		
 	private: void DisableRotors()
 	{
-		checkBox1->Enabled = false;
-		checkBox2->Enabled = false;
-		checkBox3->Enabled = false;
-		checkBox4->Enabled = false;
+		if(!checkBox1->Checked)
+			checkBox1->Enabled = false;
+		if (!checkBox2->Checked)
+			checkBox2->Enabled = false;
+		if (!checkBox3->Checked)
+			checkBox3->Enabled = false;
+		if (!checkBox4->Checked)
+			checkBox4->Enabled = false;
+		if (!checkBox5->Checked)
 		checkBox5->Enabled = false;
 
 		encrypter.GenNewRotorsModules(rot1, rot2, rot3);
+		inputText->Enabled = true;
+	}
+	private: void EnableRotors()
+	{
+		inputText->Enabled = false;
+		checkBox1->Enabled = true;
+		checkBox2->Enabled = true;
+		checkBox3->Enabled = true;
+		checkBox4->Enabled = true;
+		checkBox5->Enabled = true;
 	}
 
 	private: System::Void EForm_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -293,6 +308,7 @@ namespace EnigmaGUI {
 		encrypter.GenNewPairModule();
 
 		outText->ReadOnly = true;
+		inputText->Enabled = false;
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		bool temp = checkBox1->Checked;
@@ -300,37 +316,30 @@ namespace EnigmaGUI {
 		if (temp)
 		{
 			rotCount++;
-			if (rotCount == 3)
-				DisableRotors();
-
-			switch (rotCount)
+			if (rot1 == 0)
 			{
-			case 1:
 				rot1 = 1;
 				labelRot1->Text = System::Convert::ToString(rot1);
-				break;
-			case 2:
-				if (rot2 == 0)
-				{
-					rot2 = 1;
-					labelRot2->Text = System::Convert::ToString(rot2);
-				}
-				else
-				{
-					rot1 = 1;
-					labelRot1->Text = System::Convert::ToString(rot1);
-				}
-				break;
-			case 3:
+			}
+			else if (rot2 == 0)
+			{
+				rot2 = 1;
+				labelRot2->Text = System::Convert::ToString(rot2);
+			}
+			else
+			{
 				rot3 = 1;
 				labelRot3->Text = System::Convert::ToString(rot3);
-				break;
-			default:
-				break;
 			}
+
+			if (rotCount == 3)
+				DisableRotors();
 		}
 		else
 		{
+			if (rotCount == 3)
+				EnableRotors();
+
 			rotCount--;
 
 			if (rot1 == 1)
@@ -338,50 +347,50 @@ namespace EnigmaGUI {
 				rot1 = 0;
 				labelRot1->Text = L"?";
 			}
-			else
+			else if (rot2 == 1)
 			{
 				rot2 = 0;
 				labelRot2->Text = L"?";
 			}
+			else
+			{
+				rot3 = 0;
+				labelRot3->Text = L"?";
+			}
+			
 		}
+			
 	}
-private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	bool temp = checkBox2->Checked;
 
 	if (temp)
 	{
 		rotCount++;
-		if (rotCount == 3)
-			DisableRotors();
-
-		switch (rotCount)
+		if (rot1 == 0)
 		{
-		case 1:
 			rot1 = 2;
 			labelRot1->Text = System::Convert::ToString(rot1);
-			break;
-		case 2:
-			if (rot2 == 0)
-			{
-				rot2 = 2;
-				labelRot2->Text = System::Convert::ToString(rot2);
-			}
-			else
-			{
-				rot1 = 2;
-				labelRot1->Text = System::Convert::ToString(rot1);
-			}
-			break;
-		case 3:
+		}
+		else if (rot2 == 0)
+		{
+			rot2 = 2;
+			labelRot2->Text = System::Convert::ToString(rot2);
+		}
+		else
+		{
 			rot3 = 2;
 			labelRot3->Text = System::Convert::ToString(rot3);
-			break;
-		default:
-			break;
 		}
+
+		if (rotCount == 3)
+			DisableRotors();
 	}
 	else
 	{
+		if (rotCount == 3)
+			EnableRotors();
+
 		rotCount--;
 
 		if (rot1 == 2)
@@ -389,11 +398,17 @@ private: System::Void checkBox2_CheckedChanged(System::Object^ sender, System::E
 			rot1 = 0;
 			labelRot1->Text = L"?";
 		}
-		else
+		else if (rot2 == 2)
 		{
 			rot2 = 0;
 			labelRot2->Text = L"?";
 		}
+		else
+		{
+			rot3 = 0;
+			labelRot3->Text = L"?";
+		}
+
 	}
 }
 private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -402,37 +417,30 @@ private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::E
 	if (temp)
 	{
 		rotCount++;
-		if (rotCount == 3)
-			DisableRotors();
-
-		switch (rotCount)
+		if (rot1 == 0)
 		{
-		case 1:
 			rot1 = 3;
 			labelRot1->Text = System::Convert::ToString(rot1);
-			break;
-		case 2:
-			if (rot2 == 0)
-			{
-				rot2 = 3;
-				labelRot2->Text = System::Convert::ToString(rot2);
-			}
-			else
-			{
-				rot1 = 3;
-				labelRot1->Text = System::Convert::ToString(rot1);
-			}
-			break;
-		case 3:
+		}
+		else if (rot2 == 0)
+		{
+			rot2 = 3;
+			labelRot2->Text = System::Convert::ToString(rot2);
+		}
+		else
+		{
 			rot3 = 3;
 			labelRot3->Text = System::Convert::ToString(rot3);
-			break;
-		default:
-			break;
 		}
+
+		if (rotCount == 3)
+			DisableRotors();
 	}
 	else
 	{
+		if (rotCount == 3)
+			EnableRotors();
+
 		rotCount--;
 
 		if (rot1 == 3)
@@ -440,11 +448,17 @@ private: System::Void checkBox3_CheckedChanged(System::Object^ sender, System::E
 			rot1 = 0;
 			labelRot1->Text = L"?";
 		}
-		else
+		else if (rot2 == 3)
 		{
 			rot2 = 0;
 			labelRot2->Text = L"?";
 		}
+		else
+		{
+			rot3 = 0;
+			labelRot3->Text = L"?";
+		}
+
 	}
 }
 private: System::Void checkBox4_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -453,37 +467,30 @@ private: System::Void checkBox4_CheckedChanged(System::Object^ sender, System::E
 	if (temp)
 	{
 		rotCount++;
-		if (rotCount == 3)
-			DisableRotors();
-
-		switch (rotCount)
+		if (rot1 == 0)
 		{
-		case 1:
 			rot1 = 4;
 			labelRot1->Text = System::Convert::ToString(rot1);
-			break;
-		case 2:
-			if (rot2 == 0)
-			{
-				rot2 = 4;
-				labelRot2->Text = System::Convert::ToString(rot2);
-			}
-			else
-			{
-				rot1 = 4;
-				labelRot1->Text = System::Convert::ToString(rot1);
-			}
-			break;
-		case 3:
+		}
+		else if (rot2 == 0)
+		{
+			rot2 = 4;
+			labelRot2->Text = System::Convert::ToString(rot2);
+		}
+		else
+		{
 			rot3 = 4;
 			labelRot3->Text = System::Convert::ToString(rot3);
-			break;
-		default:
-			break;
 		}
+
+		if (rotCount == 3)
+			DisableRotors();
 	}
 	else
 	{
+		if (rotCount == 3)
+			EnableRotors();
+
 		rotCount--;
 
 		if (rot1 == 4)
@@ -491,11 +498,17 @@ private: System::Void checkBox4_CheckedChanged(System::Object^ sender, System::E
 			rot1 = 0;
 			labelRot1->Text = L"?";
 		}
-		else
+		else if (rot2 == 4)
 		{
 			rot2 = 0;
 			labelRot2->Text = L"?";
 		}
+		else
+		{
+			rot3 = 0;
+			labelRot3->Text = L"?";
+		}
+
 	}
 }
 private: System::Void checkBox5_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -504,37 +517,30 @@ private: System::Void checkBox5_CheckedChanged(System::Object^ sender, System::E
 	if (temp)
 	{
 		rotCount++;
-		if (rotCount == 3)
-			DisableRotors();
-
-		switch (rotCount)
+		if (rot1 == 0)
 		{
-		case 1:
 			rot1 = 5;
 			labelRot1->Text = System::Convert::ToString(rot1);
-			break;
-		case 2:
-			if (rot2 == 0)
-			{
-				rot2 = 5;
-				labelRot2->Text = System::Convert::ToString(rot2);
-			}
-			else
-			{
-				rot1 = 5;
-				labelRot1->Text = System::Convert::ToString(rot1);
-			}
-			break;
-		case 3:
+		}
+		else if (rot2 == 0)
+		{
+			rot2 = 5;
+			labelRot2->Text = System::Convert::ToString(rot2);
+		}
+		else
+		{
 			rot3 = 5;
 			labelRot3->Text = System::Convert::ToString(rot3);
-			break;
-		default:
-			break;
 		}
+
+		if (rotCount == 3)
+			DisableRotors();
 	}
 	else
 	{
+		if (rotCount == 3)
+			EnableRotors();
+
 		rotCount--;
 
 		if (rot1 == 5)
@@ -542,11 +548,17 @@ private: System::Void checkBox5_CheckedChanged(System::Object^ sender, System::E
 			rot1 = 0;
 			labelRot1->Text = L"?";
 		}
-		else
+		else if (rot2 == 5)
 		{
 			rot2 = 0;
 			labelRot2->Text = L"?";
 		}
+		else
+		{
+			rot3 = 0;
+			labelRot3->Text = L"?";
+		}
+
 	}
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
