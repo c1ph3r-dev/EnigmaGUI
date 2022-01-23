@@ -60,9 +60,15 @@ namespace EnigmaGUI {
 	private: System::Windows::Forms::Label^ labelRot1;
 	private: System::Windows::Forms::Label^ labelRot2;
 	private: System::Windows::Forms::TextBox^ inputText;
+	private: System::Windows::Forms::Button^ mainBtn;
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::TextBox^ outText;
+	private: System::Windows::Forms::Button^ offsetBtn;
+
+	private: System::Windows::Forms::TextBox^ offsetBox;
+
+
 
 
 
@@ -78,6 +84,7 @@ namespace EnigmaGUI {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(EForm::typeid));
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox2 = (gcnew System::Windows::Forms::CheckBox());
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
@@ -88,8 +95,10 @@ namespace EnigmaGUI {
 			this->labelRot2 = (gcnew System::Windows::Forms::Label());
 			this->labelRot3 = (gcnew System::Windows::Forms::Label());
 			this->inputText = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->mainBtn = (gcnew System::Windows::Forms::Button());
 			this->outText = (gcnew System::Windows::Forms::TextBox());
+			this->offsetBtn = (gcnew System::Windows::Forms::Button());
+			this->offsetBox = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// checkBox1
@@ -97,10 +106,10 @@ namespace EnigmaGUI {
 			this->checkBox1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->checkBox1->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox1->AutoSize = true;
-			this->checkBox1->BackColor = System::Drawing::SystemColors::Control;
+			this->checkBox1->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->checkBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->checkBox1->Location = System::Drawing::Point(1041, 30);
+			this->checkBox1->Location = System::Drawing::Point(1050, 30);
 			this->checkBox1->Name = L"checkBox1";
 			this->checkBox1->Size = System::Drawing::Size(120, 41);
 			this->checkBox1->TabIndex = 0;
@@ -113,10 +122,10 @@ namespace EnigmaGUI {
 			this->checkBox2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->checkBox2->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox2->AutoSize = true;
-			this->checkBox2->BackColor = System::Drawing::SystemColors::Control;
+			this->checkBox2->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->checkBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->checkBox2->Location = System::Drawing::Point(1041, 77);
+			this->checkBox2->Location = System::Drawing::Point(1050, 75);
 			this->checkBox2->Name = L"checkBox2";
 			this->checkBox2->Size = System::Drawing::Size(120, 41);
 			this->checkBox2->TabIndex = 1;
@@ -129,10 +138,10 @@ namespace EnigmaGUI {
 			this->checkBox3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->checkBox3->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox3->AutoSize = true;
-			this->checkBox3->BackColor = System::Drawing::SystemColors::Control;
+			this->checkBox3->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->checkBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->checkBox3->Location = System::Drawing::Point(1041, 124);
+			this->checkBox3->Location = System::Drawing::Point(1050, 120);
 			this->checkBox3->Name = L"checkBox3";
 			this->checkBox3->Size = System::Drawing::Size(120, 41);
 			this->checkBox3->TabIndex = 2;
@@ -145,10 +154,10 @@ namespace EnigmaGUI {
 			this->checkBox4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->checkBox4->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox4->AutoSize = true;
-			this->checkBox4->BackColor = System::Drawing::SystemColors::Control;
+			this->checkBox4->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->checkBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->checkBox4->Location = System::Drawing::Point(1041, 171);
+			this->checkBox4->Location = System::Drawing::Point(1050, 165);
 			this->checkBox4->Name = L"checkBox4";
 			this->checkBox4->Size = System::Drawing::Size(120, 41);
 			this->checkBox4->TabIndex = 3;
@@ -161,10 +170,10 @@ namespace EnigmaGUI {
 			this->checkBox5->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->checkBox5->Appearance = System::Windows::Forms::Appearance::Button;
 			this->checkBox5->AutoSize = true;
-			this->checkBox5->BackColor = System::Drawing::SystemColors::Control;
+			this->checkBox5->BackColor = System::Drawing::SystemColors::ButtonFace;
 			this->checkBox5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->checkBox5->Location = System::Drawing::Point(1041, 218);
+			this->checkBox5->Location = System::Drawing::Point(1050, 210);
 			this->checkBox5->Name = L"checkBox5";
 			this->checkBox5->Size = System::Drawing::Size(120, 41);
 			this->checkBox5->TabIndex = 4;
@@ -176,20 +185,23 @@ namespace EnigmaGUI {
 			// 
 			this->labelRot->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot->AutoSize = true;
+			this->labelRot->BackColor = System::Drawing::SystemColors::Desktop;
 			this->labelRot->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->labelRot->Location = System::Drawing::Point(1042, 262);
+			this->labelRot->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->labelRot->Location = System::Drawing::Point(1050, 255);
 			this->labelRot->Name = L"labelRot";
-			this->labelRot->Size = System::Drawing::Size(74, 20);
+			this->labelRot->Size = System::Drawing::Size(68, 20);
 			this->labelRot->TabIndex = 5;
-			this->labelRot->Text = L"Rotors -";
+			this->labelRot->Text = L"Rotors:";
 			// 
 			// labelRot1
 			// 
 			this->labelRot1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot1->AutoSize = true;
 			this->labelRot1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
-			this->labelRot1->Location = System::Drawing::Point(1112, 262);
+			this->labelRot1->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->labelRot1->Location = System::Drawing::Point(1115, 255);
 			this->labelRot1->Name = L"labelRot1";
 			this->labelRot1->Size = System::Drawing::Size(19, 20);
 			this->labelRot1->TabIndex = 6;
@@ -200,7 +212,8 @@ namespace EnigmaGUI {
 			this->labelRot2->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot2->AutoSize = true;
 			this->labelRot2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
-			this->labelRot2->Location = System::Drawing::Point(1137, 262);
+			this->labelRot2->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->labelRot2->Location = System::Drawing::Point(1130, 255);
 			this->labelRot2->Name = L"labelRot2";
 			this->labelRot2->Size = System::Drawing::Size(19, 20);
 			this->labelRot2->TabIndex = 7;
@@ -211,7 +224,8 @@ namespace EnigmaGUI {
 			this->labelRot3->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->labelRot3->AutoSize = true;
 			this->labelRot3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
-			this->labelRot3->Location = System::Drawing::Point(1162, 262);
+			this->labelRot3->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->labelRot3->Location = System::Drawing::Point(1145, 255);
 			this->labelRot3->Name = L"labelRot3";
 			this->labelRot3->Size = System::Drawing::Size(19, 20);
 			this->labelRot3->TabIndex = 8;
@@ -219,8 +233,10 @@ namespace EnigmaGUI {
 			// 
 			// inputText
 			// 
-			this->inputText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->inputText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->inputText->BackColor = System::Drawing::SystemColors::Window;
 			this->inputText->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->inputText->Location = System::Drawing::Point(13, 13);
@@ -228,22 +244,26 @@ namespace EnigmaGUI {
 			this->inputText->Size = System::Drawing::Size(1000, 29);
 			this->inputText->TabIndex = 9;
 			// 
-			// button1
+			// mainBtn
 			// 
-			this->button1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-				| System::Windows::Forms::AnchorStyles::Right));
-			this->button1->Location = System::Drawing::Point(432, 48);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(203, 23);
-			this->button1->TabIndex = 11;
-			this->button1->Text = L"Encrypt/Decrypt";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &EForm::button1_Click);
+			this->mainBtn->Anchor = System::Windows::Forms::AnchorStyles::Top;
+			this->mainBtn->BackColor = System::Drawing::SystemColors::ButtonFace;
+			this->mainBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->mainBtn->Location = System::Drawing::Point(432, 48);
+			this->mainBtn->Name = L"mainBtn";
+			this->mainBtn->Size = System::Drawing::Size(203, 23);
+			this->mainBtn->TabIndex = 11;
+			this->mainBtn->Text = L"Encrypt/Decrypt";
+			this->mainBtn->UseVisualStyleBackColor = false;
+			this->mainBtn->Click += gcnew System::EventHandler(this, &EForm::button1_Click);
 			// 
 			// outText
 			// 
-			this->outText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+			this->outText->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
 				| System::Windows::Forms::AnchorStyles::Right));
+			this->outText->BackColor = System::Drawing::SystemColors::Window;
 			this->outText->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->outText->Location = System::Drawing::Point(12, 77);
@@ -251,13 +271,41 @@ namespace EnigmaGUI {
 			this->outText->Size = System::Drawing::Size(1000, 29);
 			this->outText->TabIndex = 13;
 			// 
+			// offsetBtn
+			// 
+			this->offsetBtn->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->offsetBtn->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->offsetBtn->Location = System::Drawing::Point(1050, 355);
+			this->offsetBtn->MaximumSize = System::Drawing::Size(120, 40);
+			this->offsetBtn->Name = L"offsetBtn";
+			this->offsetBtn->Size = System::Drawing::Size(120, 40);
+			this->offsetBtn->TabIndex = 14;
+			this->offsetBtn->Text = L"Offset Rotors";
+			this->offsetBtn->UseVisualStyleBackColor = true;
+			this->offsetBtn->Click += gcnew System::EventHandler(this, &EForm::button2_Click);
+			// 
+			// offsetBox
+			// 
+			this->offsetBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->offsetBox->BackColor = System::Drawing::SystemColors::Window;
+			this->offsetBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->offsetBox->Location = System::Drawing::Point(1050, 310);
+			this->offsetBox->Name = L"offsetBox";
+			this->offsetBox->Size = System::Drawing::Size(120, 38);
+			this->offsetBox->TabIndex = 15;
+			// 
 			// EForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::Desktop;
 			this->ClientSize = System::Drawing::Size(1228, 636);
+			this->Controls->Add(this->offsetBox);
+			this->Controls->Add(this->offsetBtn);
 			this->Controls->Add(this->outText);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->mainBtn);
 			this->Controls->Add(this->inputText);
 			this->Controls->Add(this->labelRot3);
 			this->Controls->Add(this->labelRot2);
@@ -268,6 +316,7 @@ namespace EnigmaGUI {
 			this->Controls->Add(this->checkBox3);
 			this->Controls->Add(this->checkBox2);
 			this->Controls->Add(this->checkBox1);
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"EForm";
 			this->Text = L"EForm";
 			this->Load += gcnew System::EventHandler(this, &EForm::EForm_Load);
@@ -292,10 +341,16 @@ namespace EnigmaGUI {
 
 		encrypter.GenNewRotorsModules(rot1, rot2, rot3);
 		inputText->Enabled = true;
+		offsetBox->Enabled = true;
+		offsetBtn->Enabled = true;
+		mainBtn->Enabled = true;
 	}
 	private: void EnableRotors()
 	{
 		inputText->Enabled = false;
+		offsetBox->Enabled = false;
+		offsetBtn->Enabled = false;
+		mainBtn->Enabled = false;
 		checkBox1->Enabled = true;
 		checkBox2->Enabled = true;
 		checkBox3->Enabled = true;
@@ -309,6 +364,9 @@ namespace EnigmaGUI {
 
 		outText->ReadOnly = true;
 		inputText->Enabled = false;
+		offsetBox->Enabled = false;
+		offsetBtn->Enabled = false;
+		mainBtn->Enabled = false;
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		bool temp = checkBox1->Checked;
@@ -570,6 +628,10 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	outText->Text = output;
 	
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	encrypter.OffsetRotor(System::Convert::ToInt64(offsetBox->Text));
 }
 };
 }
