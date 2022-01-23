@@ -4,9 +4,6 @@ A GUI application using the functionality of my Enigma library which can be foun
 The release branch contains the latest stable code for the application.
 
 ## Roadmap
-### Beta 2
-* Add ability to change Rotors as you please.
-
 ### Beta 3
 * Add ability to set custom Pairs.
 * Add ability to offset Rotors by a user specified amount.
