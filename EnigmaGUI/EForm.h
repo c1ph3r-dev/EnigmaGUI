@@ -1058,7 +1058,16 @@ private: System::Windows::Forms::Button^ resetOffBtn;
 		if (!checkBox5->Checked)
 		checkBox5->Enabled = false;
 
-		encrypter.GenNewRotorsModules(rot1, rot2, rot3);
+		try
+		{
+			encrypter.GenNewRotorsModules(rot1, rot2, rot3);
+		}
+		catch (std::logic_error err)
+		{
+			MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
+
 		inputText->Enabled = true;
 		offsetBox->Enabled = true;
 		offsetBtn->Enabled = true;
@@ -1356,7 +1365,18 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 	System::String^ input = inputText->Text;
 	std::string inp = msclr::interop::marshal_as<std::string>(input);
-	std::string out = encrypter.Encrypt(inp);
+	std::string out;
+
+	try
+	{
+		out = encrypter.Encrypt(inp);
+	}
+	catch (std::logic_error err)
+	{
+		MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
+
+
 	System::String^ output = gcnew String(out.c_str());
 
 	outText->Text = output;
@@ -1420,7 +1440,14 @@ private: System::Void genPairsBtn_Click(System::Object^ sender, System::EventArg
 	pairs[12].pair1 = System::Convert::ToChar(pair13A->Text);
 	pairs[12].pair2 = System::Convert::ToChar(pair13B->Text);
 
-	encrypter.GenNewPairModule(pairs);
+	try
+	{
+		encrypter.GenNewPairModule(pairs);
+	}
+	catch(std::logic_error err)
+	{
+		MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+	}
 	
 	checkBoxSec = true;
 	pairChck->Checked = true;
