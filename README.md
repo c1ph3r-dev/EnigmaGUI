@@ -10,3 +10,8 @@ The release branch contains the latest stable code for the application.
 
 ### Beta 2
 * The ability to change Rotors as you please.
+
+### V1.0
+* The ability to set custom Pairs.
+* The ability to offset Rotors by a user specified amount.
+* The ability to reset the offset of Rotors.
