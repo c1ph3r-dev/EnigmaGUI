@@ -2,6 +2,7 @@
 
 #include <Enigma/Enigma.h>
 #include <msclr\marshal_cppstd.h>
+#include <fstream>
 
 namespace EnigmaGUI {
 
@@ -15,7 +16,12 @@ namespace EnigmaGUI {
 	Enigma::Core base{};
 	Enigma::Core encrypter{};
 	bool checkBoxSec = false;
-	
+	bool bInFile = false;
+	bool bOutFile = false;
+	bool bApp = false;
+
+	std::ifstream fileI;
+	std::ofstream fileO;
 
 	/// <summary>
 	/// Summary for EForm
@@ -142,6 +148,17 @@ private: System::Windows::Forms::Button^ defaultPairBtn;
 private: System::Windows::Forms::CheckBox^ rotChck;
 private: System::Windows::Forms::CheckBox^ pairChck;
 private: System::Windows::Forms::Button^ resetOffBtn;
+private: System::Windows::Forms::TextBox^ inPathBox;
+
+private: System::Windows::Forms::Label^ label14;
+private: System::Windows::Forms::Label^ label15;
+private: System::Windows::Forms::TextBox^ outPathBox;
+private: System::Windows::Forms::CheckBox^ inFileCheck;
+private: System::Windows::Forms::CheckBox^ outFileCheck;
+private: System::Windows::Forms::CheckBox^ appCheck;
+
+
+
 
 
 
@@ -220,6 +237,13 @@ private: System::Windows::Forms::Button^ resetOffBtn;
 			this->rotChck = (gcnew System::Windows::Forms::CheckBox());
 			this->pairChck = (gcnew System::Windows::Forms::CheckBox());
 			this->resetOffBtn = (gcnew System::Windows::Forms::Button());
+			this->inPathBox = (gcnew System::Windows::Forms::TextBox());
+			this->label14 = (gcnew System::Windows::Forms::Label());
+			this->label15 = (gcnew System::Windows::Forms::Label());
+			this->outPathBox = (gcnew System::Windows::Forms::TextBox());
+			this->inFileCheck = (gcnew System::Windows::Forms::CheckBox());
+			this->outFileCheck = (gcnew System::Windows::Forms::CheckBox());
+			this->appCheck = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// checkBox1
@@ -970,12 +994,111 @@ private: System::Windows::Forms::Button^ resetOffBtn;
 			this->resetOffBtn->UseVisualStyleBackColor = true;
 			this->resetOffBtn->Click += gcnew System::EventHandler(this, &EForm::resetOffBtn_Click);
 			// 
+			// inPathBox
+			// 
+			this->inPathBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->inPathBox->BackColor = System::Drawing::SystemColors::Window;
+			this->inPathBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->inPathBox->Location = System::Drawing::Point(13, 152);
+			this->inPathBox->Name = L"inPathBox";
+			this->inPathBox->Size = System::Drawing::Size(1000, 29);
+			this->inPathBox->TabIndex = 61;
+			// 
+			// label14
+			// 
+			this->label14->AutoSize = true;
+			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label14->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->label14->Location = System::Drawing::Point(426, 116);
+			this->label14->Name = L"label14";
+			this->label14->Size = System::Drawing::Size(217, 33);
+			this->label14->TabIndex = 62;
+			this->label14->Text = L"Input File Path";
+			// 
+			// label15
+			// 
+			this->label15->AutoSize = true;
+			this->label15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label15->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->label15->Location = System::Drawing::Point(412, 184);
+			this->label15->Name = L"label15";
+			this->label15->Size = System::Drawing::Size(241, 33);
+			this->label15->TabIndex = 64;
+			this->label15->Text = L"Output File Path";
+			// 
+			// outPathBox
+			// 
+			this->outPathBox->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Bottom)
+				| System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->outPathBox->BackColor = System::Drawing::SystemColors::Window;
+			this->outPathBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->outPathBox->Location = System::Drawing::Point(13, 220);
+			this->outPathBox->Name = L"outPathBox";
+			this->outPathBox->Size = System::Drawing::Size(1000, 29);
+			this->outPathBox->TabIndex = 63;
+			// 
+			// inFileCheck
+			// 
+			this->inFileCheck->AutoSize = true;
+			this->inFileCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->inFileCheck->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->inFileCheck->Location = System::Drawing::Point(271, 255);
+			this->inFileCheck->Name = L"inFileCheck";
+			this->inFileCheck->Size = System::Drawing::Size(254, 35);
+			this->inFileCheck->TabIndex = 65;
+			this->inFileCheck->Text = L"Use File as Input";
+			this->inFileCheck->UseVisualStyleBackColor = true;
+			this->inFileCheck->CheckedChanged += gcnew System::EventHandler(this, &EForm::inFileCheck_CheckedChanged);
+			// 
+			// outFileCheck
+			// 
+			this->outFileCheck->AutoSize = true;
+			this->outFileCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->outFileCheck->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->outFileCheck->Location = System::Drawing::Point(570, 255);
+			this->outFileCheck->Name = L"outFileCheck";
+			this->outFileCheck->Size = System::Drawing::Size(276, 35);
+			this->outFileCheck->TabIndex = 66;
+			this->outFileCheck->Text = L"Use File as Output";
+			this->outFileCheck->UseVisualStyleBackColor = true;
+			this->outFileCheck->CheckedChanged += gcnew System::EventHandler(this, &EForm::outFileCheck_CheckedChanged);
+			// 
+			// appCheck
+			// 
+			this->appCheck->AutoSize = true;
+			this->appCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->appCheck->ForeColor = System::Drawing::SystemColors::HighlightText;
+			this->appCheck->Location = System::Drawing::Point(570, 296);
+			this->appCheck->Name = L"appCheck";
+			this->appCheck->Size = System::Drawing::Size(211, 35);
+			this->appCheck->TabIndex = 67;
+			this->appCheck->Text = L"Append Mode";
+			this->appCheck->UseVisualStyleBackColor = true;
+			this->appCheck->CheckedChanged += gcnew System::EventHandler(this, &EForm::appCheck_CheckedChanged);
+			// 
 			// EForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::Desktop;
 			this->ClientSize = System::Drawing::Size(1228, 636);
+			this->Controls->Add(this->appCheck);
+			this->Controls->Add(this->outFileCheck);
+			this->Controls->Add(this->inFileCheck);
+			this->Controls->Add(this->label15);
+			this->Controls->Add(this->outPathBox);
+			this->Controls->Add(this->label14);
+			this->Controls->Add(this->inPathBox);
 			this->Controls->Add(this->resetOffBtn);
 			this->Controls->Add(this->pairChck);
 			this->Controls->Add(this->rotChck);
@@ -1109,6 +1232,9 @@ private: System::Windows::Forms::Button^ resetOffBtn;
 		mainBtn->Enabled = false;
 
 		resetOffBtn->Enabled = false;
+		inFileCheck->Checked = false;
+		outFileCheck->Checked = false;
+		appCheck->Checked = false;
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		bool temp = checkBox1->Checked;
@@ -1363,6 +1489,29 @@ private: System::Void checkBox5_CheckedChanged(System::Object^ sender, System::E
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+	if (bInFile)
+	{
+		std::string inPathStr = msclr::interop::marshal_as<std::string>(inPathBox->Text);
+		fileI.open(inPathStr, std::ios_base::in);
+		if (bOutFile)
+		{
+			std::string outPathStr = msclr::interop::marshal_as<std::string>(outPathBox->Text);
+			if (!bApp)
+			{
+				fileO.open(outPathStr, std::ios_base::out);
+			}
+			else
+			{
+				fileO.open(outPathStr, std::ios_base::app);
+			}
+			encrypter.Encrypt(fileI, fileO);
+		}
+		else
+		{
+
+		}
+	}
+
 	System::String^ input = inputText->Text;
 	std::string inp = msclr::interop::marshal_as<std::string>(input);
 	std::string out;
@@ -1483,6 +1632,15 @@ private: System::Void pairChck_CheckedChanged(System::Object^ sender, System::Ev
 }
 private: System::Void resetOffBtn_Click(System::Object^ sender, System::EventArgs^ e) {
 	encrypter = base;
+}
+private: System::Void outFileCheck_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	bOutFile = outFileCheck->Checked;
+}
+private: System::Void inFileCheck_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	bInFile = inFileCheck->Checked;
+}
+private: System::Void appCheck_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+	bApp = appCheck->Checked;
 }
 };
 }
