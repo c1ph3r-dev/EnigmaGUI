@@ -1009,6 +1009,7 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 			// 
 			// label14
 			// 
+			this->label14->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label14->AutoSize = true;
 			this->label14->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1021,6 +1022,7 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 			// 
 			// label15
 			// 
+			this->label15->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->label15->AutoSize = true;
 			this->label15->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 21.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1046,6 +1048,7 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 			// 
 			// inFileCheck
 			// 
+			this->inFileCheck->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->inFileCheck->AutoSize = true;
 			this->inFileCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1060,6 +1063,7 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 			// 
 			// outFileCheck
 			// 
+			this->outFileCheck->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->outFileCheck->AutoSize = true;
 			this->outFileCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1074,6 +1078,7 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 			// 
 			// appCheck
 			// 
+			this->appCheck->Anchor = System::Windows::Forms::AnchorStyles::Top;
 			this->appCheck->AutoSize = true;
 			this->appCheck->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
@@ -1235,6 +1240,8 @@ private: System::Windows::Forms::CheckBox^ appCheck;
 		inFileCheck->Checked = false;
 		outFileCheck->Checked = false;
 		appCheck->Checked = false;
+		appCheck->Enabled = false;
+		appCheck->Visible = false;
 	}
 	private: System::Void checkBox1_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 		bool temp = checkBox1->Checked;
@@ -1493,6 +1500,20 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	{
 		std::string inPathStr = msclr::interop::marshal_as<std::string>(inPathBox->Text);
 		fileI.open(inPathStr, std::ios_base::in);
+		std::string inp;
+		fileI >> inp;
+
+		std::string out;
+
+		try
+		{
+			out = encrypter.Encrypt(inp);
+		}
+		catch (std::logic_error err)
+		{
+			MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
 		if (bOutFile)
 		{
 			std::string outPathStr = msclr::interop::marshal_as<std::string>(outPathBox->Text);
@@ -1504,32 +1525,69 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 			{
 				fileO.open(outPathStr, std::ios_base::app);
 			}
-			encrypter.Encrypt(fileI, fileO);
+			fileO << out;
+			fileO << " ";
+			fileO.close();
+
+			MessageBox::Show(L"Text succesfully written to file", L"Enigma", MessageBoxButtons::OK, MessageBoxIcon::None);
 		}
 		else
 		{
-
+			System::String^ output = gcnew String(out.c_str());
+			outText->Text = output;
 		}
+		fileI.close();
 	}
-
-	System::String^ input = inputText->Text;
-	std::string inp = msclr::interop::marshal_as<std::string>(input);
-	std::string out;
-
-	try
+	else if (bOutFile)
 	{
-		out = encrypter.Encrypt(inp);
+		System::String^ input = inputText->Text;
+		std::string inp = msclr::interop::marshal_as<std::string>(input);
+		std::string out;
+
+		try
+		{
+			out = encrypter.Encrypt(inp);
+		}
+		catch (std::logic_error err)
+		{
+			MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		}
+
+		std::string outPathStr = msclr::interop::marshal_as<std::string>(outPathBox->Text);
+		if (!bApp)
+		{
+			fileO.open(outPathStr, std::ios_base::out);
+		}
+		else
+		{
+			fileO.open(outPathStr, std::ios_base::app);
+		}
+		fileO << out;
+		fileO << " ";
+		fileO.close();
+
+		MessageBox::Show(L"Text succesfully written to file", L"Enigma", MessageBoxButtons::OK, MessageBoxIcon::None);
 	}
-	catch (std::logic_error err)
+	else
 	{
-		MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OK, MessageBoxIcon::Error);
+		System::String^ input = inputText->Text;
+		std::string inp = msclr::interop::marshal_as<std::string>(input);
+		std::string out;
+
+		try
+		{
+			out = encrypter.Encrypt(inp);
+		}
+		catch (std::logic_error err)
+		{
+			MessageBox::Show(gcnew String(err.what()), L"ERROR!", MessageBoxButtons::OKCancel, MessageBoxIcon::Error);
+		}
+
+
+		System::String^ output = gcnew String(out.c_str());
+
+		outText->Text = output;
 	}
-
-
-	System::String^ output = gcnew String(out.c_str());
-
-	outText->Text = output;
-	
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -1635,6 +1693,8 @@ private: System::Void resetOffBtn_Click(System::Object^ sender, System::EventArg
 }
 private: System::Void outFileCheck_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	bOutFile = outFileCheck->Checked;
+	appCheck->Enabled = outFileCheck->Checked;
+	appCheck->Visible = outFileCheck->Checked;
 }
 private: System::Void inFileCheck_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
 	bInFile = inFileCheck->Checked;
