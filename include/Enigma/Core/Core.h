@@ -4,6 +4,7 @@
 #include "../Rotor/Rotor.h"
 
 #include <string>
+#include <fstream>
 
 #ifndef CORE_H_
 #define CORE_H_
@@ -38,6 +39,7 @@ namespace Enigma
 
 		void Encrypt(const std::string &word, std::string &output) const; // Encryption code for a string that takes a reference to a user string to write the output to
 		std::string Encrypt(const std::string& word) const; // Encryption code for a string that returns a string
+
 		~Core(); // Destructor
 	};
 }
