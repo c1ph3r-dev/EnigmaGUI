@@ -4,6 +4,9 @@ A GUI application using the functionality of my Enigma library which can be foun
 The release branch contains the latest stable code for the application.
 
 ## Releases and Updates
+### v2.0
+* Added ability to read from and write to files (including an append mode).
+
 ### v1.1
 * Added Error Handling.
 
